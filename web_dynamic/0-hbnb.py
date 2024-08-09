@@ -37,19 +37,16 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
-    if not os.path.exists('100-hbnb.html'):
-        return render_template('8-hbnb.html',
-                        states=st_ct,
-                        amenities=amenities,
-                        places=places,
-                        cache_id=cache_id)
-
+    if os.path.exists('web_dynamic/templates/100-hbnb.html'):
+        template_name = '100-hbnb.html'
     else:
-        return render_template('100-hbnb.html',
-                            states=st_ct,
-                            amenities=amenities,
-                            places=places,
-                            cache_id=cache_id)
+        template_name = '8-hbnb.html'
+
+    return render_template(template_name,
+                           states=st_ct,
+                           amenities=amenities,
+                           places=places,
+                           cache_id=cache_id)
 
 
 if __name__ == "__main__":
